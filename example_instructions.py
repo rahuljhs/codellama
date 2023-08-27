@@ -2,9 +2,8 @@
 # This software may be used and distributed according to the terms of the Llama 2 Community License Agreement.
 
 from typing import Optional
-
+import torch
 import fire
-
 from llama import Llama
 
 
@@ -17,6 +16,7 @@ def main(
     max_batch_size: int = 8,
     max_gen_len: Optional[int] = None,
 ):
+    torch.cuda.set_device(0)
     generator = Llama.build(
         ckpt_dir=ckpt_dir,
         tokenizer_path=tokenizer_path,

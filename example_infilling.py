@@ -2,7 +2,7 @@
 # This software may be used and distributed according to the terms of the Llama 2 Community License Agreement.
 
 import fire
-
+import torch
 from llama import Llama
 
 
@@ -15,6 +15,7 @@ def main(
     max_gen_len: int = 128,
     max_batch_size: int = 4,
 ):
+    torch.cuda.set_device(0)
     generator = Llama.build(
         ckpt_dir=ckpt_dir,
         tokenizer_path=tokenizer_path,
